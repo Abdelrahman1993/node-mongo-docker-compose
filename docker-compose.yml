@@ -1,0 +1,20 @@
+version: "3"
+services:
+  app:
+    container_name: docker-node-mongo
+    restart: always
+    build: .
+    ports:
+      - "80:3000"
+    volumes:
+      - ./:/usr/src/app
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    restart: always
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - "./data:/data/db"
